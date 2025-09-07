@@ -1,8 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
+import { db } from "../firebase";  // 👈 import Firestore
 
-const API_BASE = process.env.REACT_APP_NEXT_PUBLIC_REVIEWS_API;
+import {
+    collection,
+    addDoc,
+    getDocs,
+    serverTimestamp,
+    query,
+    orderBy,
+} from "firebase/firestore";
+
+
+// const API_BASE = process.env.REACT_APP_NEXT_PUBLIC_REVIEWS_API;
+
 
 
 const ReviewsSection = () => {
@@ -13,13 +25,35 @@ const ReviewsSection = () => {
     const scrollRef = useRef(null);
     const autoSlideInterval = useRef(null);
 
+    // Fetch reviews from Firestore
+    const fetchReviews = async () => {
+        try {
+            const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+            const snapshot = await getDocs(q);
+            const reviewsData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setReviews(reviewsData);
+        } catch (error) {
+            console.error("Error fetching reviews:", error);
+            setReviews([]);
+        }
+    };
+
     useEffect(() => {
         fetchReviews();
     }, []);
-
     // const fetchReviews = async () => {
     //     try {
-    //         const response = await fetch(`${API_BASE}/reviews`);
+    //         const url = `${API_BASE}/reviews`;
+
+    //         const response = await fetch(url);
+
+    //         // If server doesn't send JSON, log the raw text to debug
+    //         const contentType = response.headers.get("content-type");
+    //         if (!contentType || !contentType.includes("application/json")) {
+    //             const text = await response.text();
+    //             throw new Error(`Expected JSON, got: ${text.substring(0, 200)}`);
+    //         }
+
     //         const data = await response.json();
     //         setReviews(Array.isArray(data) ? data : data.reviews || []);
     //     } catch (error) {
@@ -27,53 +61,57 @@ const ReviewsSection = () => {
     //         setReviews([]);
     //     }
     // };
-    const fetchReviews = async () => {
-        try {
-            const url = `${API_BASE}/reviews`;
-
-            const response = await fetch(url);
-
-            // If server doesn't send JSON, log the raw text to debug
-            const contentType = response.headers.get("content-type");
-            if (!contentType || !contentType.includes("application/json")) {
-                const text = await response.text();
-                throw new Error(`Expected JSON, got: ${text.substring(0, 200)}`);
-            }
-
-            const data = await response.json();
-            setReviews(Array.isArray(data) ? data : data.reviews || []);
-        } catch (error) {
-            console.error("Error fetching reviews:", error);
-            setReviews([]);
-        }
-    };
 
 
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     setIsSubmitting(true);
+    //     setMessage("");
+
+    //     try {
+    //         const response = await fetch(`${API_BASE}/reviews`, {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({
+    //                 ...newReview,
+    //                 date: new Date().toISOString().split("T")[0], // Only date
+    //             }),
+    //         });
+
+
+    //         if (response.ok) {
+    //             setMessage("Review submitted successfully!");
+    //             setNewReview({ name: "", country: "", rating: 5, comment: "" });
+    //             fetchReviews();
+    //         } else {
+    //             setMessage("Failed to submit review. Please try again.");
+    //         }
+    //     } catch (error) {
+    //         setMessage("Error submitting review. Please try again.");
+    //         console.error("Error:", error);
+    //     } finally {
+    //         setIsSubmitting(false);
+    //     }
+    // };
+
+    // Submit new review to Firestore
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setMessage("");
 
         try {
-            const response = await fetch(`${API_BASE}/reviews`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    ...newReview,
-                    date: new Date().toISOString().split("T")[0], // Only date
-                }),
+            await addDoc(collection(db, "reviews"), {
+                ...newReview,
+                createdAt: serverTimestamp(),
             });
 
-            if (response.ok) {
-                setMessage("Review submitted successfully!");
-                setNewReview({ name: "", country: "", rating: 5, comment: "" });
-                fetchReviews();
-            } else {
-                setMessage("Failed to submit review. Please try again.");
-            }
+            setMessage("Review submitted successfully!");
+            setNewReview({ name: "", country: "", rating: 5, comment: "" });
+            fetchReviews();
         } catch (error) {
             setMessage("Error submitting review. Please try again.");
-            console.error("Error:", error);
+            console.error("Error adding review:", error);
         } finally {
             setIsSubmitting(false);
         }
@@ -133,7 +171,13 @@ const ReviewsSection = () => {
                                     <div>
                                         <h3 className="text-lg font-semibold text-white">{review.name}</h3>
                                         <span className="text-gray-400 text-sm">
-                                            {new Date(review.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+                                            {review.createdAt?.toDate
+                                                ? review.createdAt.toDate().toLocaleDateString('en-GB', {
+                                                    day: '2-digit',
+                                                    month: 'short',
+                                                    year: 'numeric',
+                                                })
+                                                : ""}
                                         </span>
                                     </div>
                                     <div className="text-right">
