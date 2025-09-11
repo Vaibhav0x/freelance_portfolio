@@ -73,7 +73,7 @@ export const freelanceProjects = [
         tech: ["ReactJs", "TailwindCSS", "Framer Motion"],
         image: "🎉",
         github: "https://github.com/Vaibhav0x/",
-        live: "https://event-hub-vaibhav.netlify.app/",
+        live: "https://event-hub-lord-dev.netlify.app/",
         featured: true,
         category: "Frontend"
     },
