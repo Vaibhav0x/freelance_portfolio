@@ -35,7 +35,7 @@ const Navigation = () => {
                         {/* Circular Image */}
                         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-black-700 group-hover:border-purple-400 transition-colors duration-300">
                             <img
-                                src="/vr_avatar.jpg" // <- make sure this is in your /public folder
+                                src="/vr_avatar.png" // <- make sure this is in your /public folder
                                 alt="VR Logo"
                                 className="w-full h-full object-cover"
                             />
