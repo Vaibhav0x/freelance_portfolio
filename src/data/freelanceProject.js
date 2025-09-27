@@ -139,7 +139,7 @@ export const freelanceProjects = [
         tech: ["ReactJs", "Nodejs", "Tailwind", "Firebase"],
         image: "🔥",
         github: "https://github.com/Vaibhav0x/",
-        live: "https://github.com/Vaibhav0x/",
+        live: "https://only-u-lord-dev.netlify.app/",
         featured: true,
         category: "Full Stack"
     },
