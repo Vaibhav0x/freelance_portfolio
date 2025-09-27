@@ -197,7 +197,7 @@ export const freelanceCategoryInfo = {
     },
     'Apps': {
         icon: '📱',
-        gradient: 'from-orange-400 to-red-500',
+        gradient: 'from-orange-400 to-green-500',
         description: 'React Native Android & iOS App'
     },
     'Automation': {
