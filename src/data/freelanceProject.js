@@ -120,7 +120,41 @@ export const freelanceProjects = [
         live: "https://github.com/Vaibhav0x/",
         featured: true,
         category: "AI"
+    },
+    {
+        id: 12,
+        title: "O’kiny (Music Streaming Service)",
+        description: "A conceptual music streaming app designed to differentiate from existing platforms by focusing on playlist rental, artist-first monetization, and Web3 membership. Proposed features include unique UI/UX for younger and middle-aged audiences, exclusive content, and strong artist rights protection.",
+        tech: ["UI/UX Design", "Mobile App", "Blockchain", "Web3", "Music Streaming", "Firebase"],
+        image: "🎶",
+        github: "https://github.com/Vaibhav0x/",
+        live: "https://github.com/Vaibhav0x/",
+        featured: true,
+        category: "Apps"
+    },
+    {
+        id: 13,
+        title: "OnlyU (18+ Japanese Content Platform)",
+        description: "A full-stack web application inspired by subscription-based content platforms, built with ReactJS, Node.js, TailwindCSS, and Firebase for authentication and data management. Includes responsive UI, secure user login, and content creator dashboards.",
+        tech: ["ReactJs", "Nodejs", "Tailwind", "Firebase"],
+        image: "🔥",
+        github: "https://github.com/Vaibhav0x/",
+        live: "https://github.com/Vaibhav0x/",
+        featured: true,
+        category: "Full Stack"
+    },
+    {
+        id: 14,
+        title: "Google Form U Clone",
+        description: "A Google Forms clone that enables users to create, customize, and share online forms with real-time response collection. Built using ReactJS, Node.js, TailwindCSS, and MySQL, with support for multiple question types, authentication, and analytics dashboard.",
+        tech: ["ReactJs", "Nodejs", "Tailwind", "MySQL"],
+        image: "📑",
+        github: "https://github.com/Vaibhav0x/google_form_frontend",
+        live: "https://github.com/Vaibhav0x/google_form_backend_100",
+        featured: true,
+        category: "Full Stack"
     }
+
 
 ];
 
@@ -160,6 +194,11 @@ export const freelanceCategoryInfo = {
         icon: '🤖',
         gradient: 'from-orange-400 to-red-500',
         description: 'AI & machine learning solutions'
+    },
+    'Apps': {
+        icon: '📱',
+        gradient: 'from-orange-400 to-red-500',
+        description: 'React Native Android & iOS App'
     },
     'Automation': {
         icon: '🔄',
