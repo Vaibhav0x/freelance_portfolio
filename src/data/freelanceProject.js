@@ -125,7 +125,7 @@ export const freelanceProjects = [
         id: 12,
         title: "O’kiny (Music Streaming Service)",
         description: "A conceptual music streaming app designed to differentiate from existing platforms by focusing on playlist rental, artist-first monetization, and Web3 membership. Proposed features include unique UI/UX for younger and middle-aged audiences, exclusive content, and strong artist rights protection.",
-        tech: ["UI/UX Design", "Mobile App", "Blockchain", "Web3", "Music Streaming", "Firebase"],
+        tech: ["UI/UX Design", "Mobile App", "React Native", "Music Streaming", "Firebase"],
         image: "🎶",
         github: "https://github.com/Vaibhav0x/",
         live: "https://github.com/Vaibhav0x/",
