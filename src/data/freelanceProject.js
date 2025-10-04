@@ -153,9 +153,18 @@ export const freelanceProjects = [
         live: "https://github.com/Vaibhav0x/google_form_backend_100",
         featured: true,
         category: "Full Stack"
+    },
+    {
+        id: 15,
+        title: "HipChat",
+        description: "A React Native chat application built with Expo that provides end-to-end encrypted messaging using Hippius S3 as the storage backend. Users are identified by Bittensor hotkeys derived from mnemonics, and all messages are encrypted using XChaCha20-Poly1305 sealed boxes.",
+        tech: ["React Native", "Blockchain", "S3 Bucket"],
+        image: "💬",
+        github: "https://github.com/Vaibhav0x/Hipchat_native_app",
+        live: "https://github.com/Vaibhav0x",
+        featured: true,
+        category: "Apps"
     }
-
-
 ];
 
 // Auto-categorize freelance projects
