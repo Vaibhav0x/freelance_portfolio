@@ -1,20 +1,29 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaStar, FaQuoteLeft, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { FaChevronLeft, FaChevronRight, FaQuoteLeft, FaStar, FaTimes } from "react-icons/fa";
 import { db } from "../firebase";
 
 import {
-    collection,
     addDoc,
+    collection,
     getDocs,
-    serverTimestamp,
-    query,
     orderBy,
+    query,
+    serverTimestamp,
 } from "firebase/firestore";
 
 // STATIC IMAGES OBJECT - Add multiple images per review index
 const STATIC_REVIEW_IMAGES = {
     0: [
+        "/images/app_images/hazz_1.png",
+        "/images/app_images/hazz_2.png",
+        "/images/app_images/hazz_3.png",
+        "/images/app_images/hazz_4.png",
+        "/images/app_images/hazz_5.png",
+        "/images/app_images/hazz_6.png",
+        "/images/app_images/hazz_7.png",
+    ],
+    1: [
         "/images/app_images/tani_1.png",
         "/images/app_images/tani_2.png",
         "/images/app_images/tani_3.png",
@@ -23,14 +32,14 @@ const STATIC_REVIEW_IMAGES = {
         // "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=600&fit=crop",
         // "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=600&fit=crop"
     ],
-    1: [
+    2: [
         "/images/app_images/mark_1.png",
         "/images/app_images/mark_2.png",
         "/images/app_images/mark_3.png"
         // "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&h=600&fit=crop",
         // "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=600&fit=crop"
     ],
-    2: [
+    3: [
         "/images/app_images/kumagai_1.png",
         "/images/app_images/kumagai_2.png",
         "/images/app_images/kumagai_3.png",
@@ -40,7 +49,7 @@ const STATIC_REVIEW_IMAGES = {
         // "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&h=600&fit=crop",
         // "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&h=600&fit=crop"
     ],
-    3: [
+    4: [
         "/images/app_images/alice_1.png",
         "/images/app_images/alice_2.png",
         "/images/app_images/alice_3.png"
